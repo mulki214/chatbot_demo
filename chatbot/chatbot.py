@@ -133,6 +133,7 @@ class Chatbot:
         trainingArgs.add_argument('--batchSize', type=int, default=256, help='mini-batch size')
         trainingArgs.add_argument('--learningRate', type=float, default=0.002, help='Learning rate')
         trainingArgs.add_argument('--dropout', type=float, default=0.9, help='Dropout rate (keep probabilities)')
+        trainingArgs.add_argument('--modelType', type=str, default='seq2seq', help='Type of model')
 
         return parser.parse_args(args)
 
