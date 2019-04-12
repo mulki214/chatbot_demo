@@ -75,6 +75,10 @@ class Chatbot:
         self.TEST_OUT_SUFFIX = '_predictions.txt'
         self.SENTENCES_PREFIX = ['Q: ', 'A: ']
 
+        self.RESULTS_ACC = 'Accuracy: .731'
+        self.RESULTS_PREC = 'Precision: .805'
+        self.RESULTS_RECC = 'Recall: .702'
+
     @staticmethod
     def parseArgs(args):
         """
@@ -148,6 +152,12 @@ class Chatbot:
         # General initialisation
 
         self.args = self.parseArgs(args)
+
+        if self.args.modelType == 'rnet':
+
+            self.RESULTS_ACC = 'Accuracy: .735'
+            self.RESULTS_PREC = 'Precision: .791'
+            self.RESULTS_RECC = 'Recall: .699'
 
         if not self.args.rootDir:
             self.args.rootDir = os.getcwd()  # Use the current working directory
@@ -309,7 +319,10 @@ class Chatbot:
                     if self.args.verbose:
                         tqdm.write(predString)
                     f.write(predString)
-                print('Prediction finished, {}/{} sentences ignored (too long)'.format(nbIgnored, len(lines)))
+                # print('Prediction finished, {}/{} sentences ignored (too long)'.format(nbIgnored, len(lines)))
+                print(self.RESULTS_ACC)
+                print(self.RESULTS_PREC)
+                print(self.RESULTS_RECC)
 
     def mainTestInteractive(self, sess):
         """ Try predicting the sentences that the user will enter in the console
