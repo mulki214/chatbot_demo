@@ -217,6 +217,9 @@ class Chatbot:
                 print('Start predicting...')
                 self.predictTestset(self.sess)
                 print('All predictions done')
+                print(self.RESULTS_ACC)
+                print(self.RESULTS_PREC)
+                print(self.RESULTS_RECC)
             elif self.args.test == Chatbot.TestMode.DAEMON:
                 print('Daemon mode, running in background...')
             else:
@@ -319,10 +322,8 @@ class Chatbot:
                     if self.args.verbose:
                         tqdm.write(predString)
                     f.write(predString)
-                # print('Prediction finished, {}/{} sentences ignored (too long)'.format(nbIgnored, len(lines)))
-                print(self.RESULTS_ACC)
-                print(self.RESULTS_PREC)
-                print(self.RESULTS_RECC)
+                print('Prediction finished, {}/{} sentences ignored (too long)'.format(nbIgnored, len(lines)))
+
 
     def mainTestInteractive(self, sess):
         """ Try predicting the sentences that the user will enter in the console
